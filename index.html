@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Supply Chain Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="module" src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-app-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.23.0/firebase-firestore-compat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <nav class="sidebar">
+            <div class="logo">
+                <span>⚡</span>
+                <span>SupplyAI</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item active">📊 Dashboard</li>
+                <li class="nav-item">🎯 Optimization</li>
+                <li class="nav-item">📦 Inventory</li>
+                <li class="nav-item">🚚 Logistics</li>
+                <li class="nav-item">📈 Analytics</li>
+                <li class="nav-item">⚙️ Settings</li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <header class="header">
+                <h1>Supply Chain Command Center</h1>
+                <div class="ai-status">
+                    <div class="ai-pulse"></div>
+                    <span>AI Engine Active</span>
+                </div>
+            </header>
+
+            <section class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-title">Total Cost Savings</span>
+                        <span>💰</span>
+                    </div>
+                    <div class="metric-value" id="costSavings">R2.4M</div>
+                    <div class="metric-change positive">
+                        <span>↗</span>
+                        <span>+12.5% from last month</span>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-title">Delivery Efficiency</span>
+                        <span>🚀</span>
+                    </div>
+                    <div class="metric-value" id="efficiency">94.7%</div>
+                    <div class="metric-change positive">
+                        <span>↗</span>
+                        <span>+8.2% improvement</span>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-title">Inventory Optimization</span>
+                        <span>📦</span>
+                    </div>
+                    <div class="metric-value" id="inventory">87.3%</div>
+                    <div class="metric-change positive">
+                        <span>↗</span>
+                        <span>+5.1% optimized</span>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-title">Risk Score</span>
+                        <span>⚠️</span>
+                    </div>
+                    <div class="metric-value" id="riskScore">Low</div>
+                    <div class="metric-change positive">
+                        <span>↓</span>
+                        <span>-15% risk reduction</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="charts-section">
+                <div class="chart-container">
+                    <h3 class="chart-title">Supply Chain Performance Trends</h3>
+                    <canvas id="performanceChart" width="800" height="400"></canvas>
+                </div>
+
+                <div class="optimization-panel">
+                    <h3 class="chart-title">AI Optimization Engine</h3>
+                    <button class="optimization-btn" onclick="runOptimization()">
+                        <span class="loading-spinner" id="loadingSpinner"></span>
+                        Run AI Optimization
+                    </button>
+                    <div id="recommendations">
+                        <div class="recommendation-item">
+                            <strong>Route Optimization:</strong> Reduce delivery time by 23% using AI-powered routing
+                        </div>
+                        <div class="recommendation-item">
+                            <strong>Inventory Prediction:</strong> Adjust stock levels to prevent 15% of potential stockouts
+                        </div>
+                        <div class="recommendation-item">
+                            <strong>Supplier Diversification:</strong> Recommended 3 new suppliers to reduce risk exposure
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="supply-map">
+                <h3 class="chart-title">Global Supply Network</h3>
+                <div id="supplyMapViz"></div>
+            </section>
+
+            <section class="data-table">
+                <h3 class="chart-title">Real-time Supply Chain Data</h3>
+                <table id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Location</th>
+                            <th>Inventory Level</th>
+                            <th>Demand Forecast</th>
+                            <th>Lead Time</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    </tbody>
+                </table>
+        </main>
+    </div>
+
+    <div class="connection-status" id="connectionStatus">
+        <div>Firebase: <span id="connectionText">Connecting...</span></div>
+    </div>
+
+    <script src="js/firebase-config.js"></script>
+    <script src="js/chart-utils.js"></script>
+    <script src="js/supply-map.js"></script>
+    <script src="js/data-table.js"></script>
+    <script src="js/metrics.js"></script>
+    <script src="js/optimization.js"></script>
+    <script src="js/realtime-updates.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
